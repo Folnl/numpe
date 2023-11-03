@@ -3,7 +3,6 @@ package br.com.numpetest.api.domain;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import br.com.numpetest.api.dto.CreateFuelingOrderDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -21,6 +21,7 @@ import lombok.Setter;
 @Table(name = "abastecimentos")
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class FuelingOrder implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -49,9 +50,4 @@ public class FuelingOrder implements Serializable {
     @Setter
     @NonNull
     private Calendar timestamp;
-
-    public static FuelingOrder fromCreateDto(CreateFuelingOrderDTO createDto) {
-        return new FuelingOrder(createDto.getVehicleMileage(), createDto.getVehiclePlate(), createDto.getPrice(),
-                createDto.getTimestamp());
-    }
 }

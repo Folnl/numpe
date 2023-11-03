@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import br.com.numpetest.api.domain.FuelingOrder;
 
 @Repository
-public interface FuelingOrderRepository extends JpaRepository<FuelingOrder, Integer> {
+public interface FuelingOrderRepository extends JpaRepository<FuelingOrder, Long> {
 }

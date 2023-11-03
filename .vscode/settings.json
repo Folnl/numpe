@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["numpetest"],
+  "cSpell.words": ["dtos", "numpetest"],
   "java.configuration.updateBuildConfiguration": "interactive",
   "java.compile.nullAnalysis.mode": "automatic"
 }
