@@ -5,11 +5,11 @@ import java.util.Calendar;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CreateFuelingDTO {
+public class CreateFuelingOrderDTO {
 
     @Getter
     @Setter
-    private Double vehicleMileage;
+    private Float vehicleMileage;
 
     @Getter
     @Setter
@@ -17,7 +17,7 @@ public class CreateFuelingDTO {
 
     @Getter
     @Setter
-    private Double value;
+    private Float price;
 
     @Getter
     @Setter
