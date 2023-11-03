@@ -1,7 +1,6 @@
 package br.com.numpetest.api.controllers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.numpetest.api.dto.FuelingOrderDTO;
-import br.com.numpetest.api.mappers.FuelingOrderMapper;
 import br.com.numpetest.api.services.FuelingOrderService;
 
 @RestController
@@ -22,18 +20,15 @@ public class FuelingOrderController {
     @Autowired
     private FuelingOrderService service;
 
-    @Autowired
-    private FuelingOrderMapper mapper;
-
     @GetMapping
     public ResponseEntity<List<FuelingOrderDTO>> list() {
-        var dtos = service.list().stream().map(mapper::toDTO).collect(Collectors.toList());
+        var dtos = service.list();
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
     @GetMapping(":id")
     public ResponseEntity<FuelingOrderDTO> findById(@Param("id") Long id) {
-        var dto = mapper.toDTO(service.findById(id));
+        var dto = service.findById(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }

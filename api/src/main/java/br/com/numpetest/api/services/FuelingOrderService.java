@@ -1,12 +1,14 @@
 package br.com.numpetest.api.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.numpetest.api.domain.FuelingOrder;
 import br.com.numpetest.api.dto.CreateFuelingOrderDTO;
+import br.com.numpetest.api.dto.FuelingOrderDTO;
 import br.com.numpetest.api.mappers.FuelingOrderMapper;
 import br.com.numpetest.api.repositories.FuelingOrderRepository;
 import jakarta.transaction.Transactional;
@@ -20,17 +22,18 @@ public class FuelingOrderService {
     @Autowired
     private FuelingOrderMapper mapper;
 
-    public List<FuelingOrder> list() {
-        return repository.findAll();
+    public List<FuelingOrderDTO> list() {
+        return repository.findAll().stream().map(mapper::toDTO).collect(Collectors.toList());
     }
 
-    public FuelingOrder findById(Long id) {
+    public FuelingOrderDTO findById(Long id) {
         var domain = repository.findById(id);
-        return domain.orElseThrow();
+        return mapper.toDTO(domain.orElseThrow());
     }
 
     @Transactional
-    public FuelingOrder create(CreateFuelingOrderDTO createDTO) {
-        return repository.save(mapper.toDomain(createDTO));
+    public FuelingOrderDTO create(CreateFuelingOrderDTO createDTO) {
+        var domain = repository.save(mapper.toDomain(createDTO));
+        return mapper.toDTO(domain);
     }
 }
