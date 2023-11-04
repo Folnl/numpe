@@ -11,26 +11,48 @@
 	</div>
 
 	<mat-list *ngIf="fuelingOrders.length > 0" class="overflow-auto">
-		<div *ngFor="let fuelingOrdersByPlate of vehiclePlates()">
+		<div *ngFor="let fuelingOrdersByPlate of vehiclePlates()" class="mb-8">
 			<div mat-subheader>{{ fuelingOrdersByPlate[0].vehiclePlate }}</div>
-			<mat-list-item *ngFor="let fuelingOrder of fuelingOrdersByPlate">
-				<div matListItemTitle>
-					KM: {{ fuelingOrder.vehicleMileage }} | Valor: R$
-					{{ fuelingOrder.price }}
-					<button
-						mat-icon-button
-						color="warn"
-						aria-label="Botão de deletar registro"
-					>
-						<mat-icon>delete</mat-icon>
-					</button>
-				</div>
-				<div matListItemLine>
-					Data:
-					{{ fuelingOrder.timestamp | date : "dd/MM/yyyy HH:mm:ss" }}
-				</div>
-			</mat-list-item>
-			<mat-divider></mat-divider>
+			<mat-divider class="mb-4"></mat-divider>
+			<div fxLayout="column">
+				<mat-card
+					*ngFor="let fuelingOrder of fuelingOrdersByPlate"
+					fxFlex.lg="33.3333%"
+					fxFlex.lt-lg="50%"
+					fxFlex.xs="100%"
+				>
+					<mat-card-content>
+						<div fxLayout="row" fxLayoutAlign="space-between">
+							<div>
+								<div matListItemTitle>
+									KM:
+									{{ fuelingOrder.vehicleMileage | number }}
+									| Valor:
+									{{ fuelingOrder.price | currency }}
+								</div>
+								<div matListItemLine>
+									Data:
+									{{
+										fuelingOrder.timestamp
+											| date : "dd/MM/yyyy HH:mm:ss"
+									}}
+								</div>
+							</div>
+							<button
+								mat-icon-button
+								color="warn"
+								aria-label="Botão de deletar registro"
+								(click)="
+									openDeleteFuelingOrderDialog(fuelingOrder)
+								"
+							>
+								<mat-icon>delete</mat-icon>
+							</button>
+						</div>
+					</mat-card-content>
+				</mat-card>
+			</div>
+			<!-- <mat-divider></mat-divider> -->
 		</div>
 	</mat-list>
 	<div *ngIf="fuelingOrders.length == 0">Nenhum abastecimento registrado</div>

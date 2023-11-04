@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Remover registro</h1>
+<div mat-dialog-content>
+	<div>Tem certeza que deseja remover este registro?</div>
+	<mat-card class="my-2">
+		<mat-card-content>
+			<div matListItemTitle>
+				<div class="font-bold mb-2">
+					{{ fuelingOrder.vehiclePlate }}
+				</div>
+				<mat-divider></mat-divider>
+				KM: {{ fuelingOrder.vehicleMileage | number }} | Valor:
+				{{ fuelingOrder.price | currency }}
+			</div>
+			<div matListItemLine>
+				Data:
+				{{ fuelingOrder.timestamp | date : "dd/MM/yyyy HH:mm:ss" }}
+			</div>
+		</mat-card-content>
+	</mat-card>
+	<mat-dialog-actions align="end">
+		<button mat-button mat-dialog-close>Cancelar</button>
+		<button
+			mat-button
+			color="warn"
+			[mat-dialog-close]="true"
+			cdkFocusInitial
+		>
+			Remover
+		</button>
+	</mat-dialog-actions>
+</div>

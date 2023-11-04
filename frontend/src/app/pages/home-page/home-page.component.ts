@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import IFuelingOrder from 'src/app/models/IFuelingOrder';
+import { DeleteFuelingOrderDialogComponent } from 'src/app/pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
 
 function fueling(plate: string): IFuelingOrder {
 	return {
@@ -25,6 +27,14 @@ export class HomePageComponent {
 		fueling('CBA-4321'),
 		fueling('CBA-4321'),
 	];
+
+	constructor(public dialog: MatDialog) {}
+
+	openDeleteFuelingOrderDialog(fuelingOrderToDelete: IFuelingOrder) {
+		this.dialog.open(DeleteFuelingOrderDialogComponent, {
+			data: fuelingOrderToDelete,
+		});
+	}
 
 	vehiclePlatesMap = () => {
 		return this.fuelingOrders.reduce(
