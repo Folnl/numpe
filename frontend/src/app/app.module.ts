@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -16,11 +16,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import '@angular/common/locales/global/pt';
+import { DeleteFuelingOrderDialogComponent } from './pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
 
 @NgModule({
-	declarations: [AppComponent, HomePageComponent, RegisterPageComponent],
+	declarations: [AppComponent, HomePageComponent, RegisterPageComponent, DeleteFuelingOrderDialogComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -36,9 +40,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		MatListModule,
 		MatDividerModule,
 		MatIconModule,
+		MatCardModule,
+		MatDialogModule,
 		FlexLayoutModule,
 	],
-	providers: [],
+	providers: [
+		{ provide: LOCALE_ID, useValue: 'pt-BR' },
+		{ provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
