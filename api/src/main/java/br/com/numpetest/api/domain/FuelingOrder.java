@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,11 +42,14 @@ public class FuelingOrder implements Serializable {
     @Getter
     @Setter
     @NonNull
+    @NotBlank
+    @Size(min = 7, max = 8, message = "A placa do veículo deve ter entre 7 e 8 caracteres.")
     private String vehiclePlate;
 
     @Getter
     @Setter
     @NonNull
+    @Positive(message = "O valor do abastecimento deve ser positivo.")
     private BigDecimal price;
 
     @Temporal(TemporalType.TIMESTAMP)

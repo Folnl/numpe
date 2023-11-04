@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,6 +26,29 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public final ErrorResponse handleConstraintViolationException(
             ConstraintViolationException exception) {
+        List<String> errors = Collections.singletonList(exception.getMessage());
+        return new ErrorResponse(HttpStatus.BAD_REQUEST, errors);
+    }
+
+    @ExceptionHandler(ResponseException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ErrorResponse handleResponseException(
+            ResponseException exception) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ErrorResponse handleIllegalArgumentException(
+            IllegalArgumentException exception) {
+        List<String> errors = Collections.singletonList(exception.getMessage());
+        return new ErrorResponse(HttpStatus.BAD_REQUEST, errors);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ErrorResponse handleHttpMessageNotReadableException(
+            HttpMessageNotReadableException exception) {
         List<String> errors = Collections.singletonList(exception.getMessage());
         return new ErrorResponse(HttpStatus.BAD_REQUEST, errors);
     }
