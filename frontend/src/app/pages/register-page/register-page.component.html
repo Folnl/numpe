@@ -1,0 +1,65 @@
+<div class="w-full" fxLayout="row" fxLayoutAlign="center">
+	<form
+		[formGroup]="form"
+		(ngSubmit)="onSubmit()"
+		fxLayout="column"
+		fxFlex="100%"
+		fxFlex.gt-sm="75%"
+		fxFlex.gt-md="50%"
+	>
+		<mat-form-field>
+			<mat-label>Placa do veículo</mat-label>
+			<input matInput formControlName="vehiclePlate" />
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Quilometragem veículo</mat-label>
+			<input matInput formControlName="vehicleMileage" />
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Valor do abastecimento</mat-label>
+			<input matInput formControlName="price" />
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Choose a date</mat-label>
+			<input
+				matInput
+				[matDatepicker]="picker"
+				formControlName="timestamp"
+			/>
+			<mat-datepicker-toggle
+				matIconSuffix
+				[for]="picker"
+			></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+
+		<div
+			fxLayoutAlign="flex-end"
+			fxLayoutAlign.xs="flex-start"
+			fxLayout="row"
+			fxLayout.xs="column"
+			fxLayoutGap="1rem"
+		>
+			<div fxFlex.xs="100%" fxFlex.sm="25%">
+				<button
+					class="w-full"
+					mat-raised-button
+					color="primary"
+					(submit)="(form)"
+				>
+					Criar
+				</button>
+			</div>
+			<div fxFlex.xs="100%" fxFlex.sm="25%">
+				<button
+					class="w-full"
+					mat-raised-button
+					color="basic"
+					[routerLink]="['']"
+				>
+					Voltar
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
