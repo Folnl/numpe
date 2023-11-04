@@ -1,6 +1,7 @@
 package br.com.numpetest.api.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import jakarta.persistence.Entity;
@@ -33,7 +34,7 @@ public class FuelingOrder implements Serializable {
     @Getter
     @Setter
     @NonNull
-    private Float vehicleMileage;
+    private Integer vehicleMileage;
 
     @Getter
     @Setter
@@ -43,7 +44,7 @@ public class FuelingOrder implements Serializable {
     @Getter
     @Setter
     @NonNull
-    private Float price;
+    private BigDecimal price;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Getter

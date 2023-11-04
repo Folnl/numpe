@@ -37,4 +37,9 @@ public class FuelingOrderService {
         var domain = repository.save(mapper.toDomain(createDTO));
         return mapper.toDTO(domain);
     }
+
+    public void deleteById(Long id) {
+        findById(id);
+        repository.deleteById(id);
+    }
 }

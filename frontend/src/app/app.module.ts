@@ -18,13 +18,22 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import '@angular/common/locales/global/pt';
 import { DeleteFuelingOrderDialogComponent } from './pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-	declarations: [AppComponent, HomePageComponent, RegisterPageComponent, DeleteFuelingOrderDialogComponent],
+	declarations: [
+		AppComponent,
+		HomePageComponent,
+		RegisterPageComponent,
+		DeleteFuelingOrderDialogComponent,
+	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -42,7 +51,10 @@ import { DeleteFuelingOrderDialogComponent } from './pages/home-page/dialogs/del
 		MatIconModule,
 		MatCardModule,
 		MatDialogModule,
+		MatProgressBarModule,
+		MatToolbarModule,
 		FlexLayoutModule,
+		HttpClientModule,
 	],
 	providers: [
 		{ provide: LOCALE_ID, useValue: 'pt-BR' },

@@ -39,14 +39,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final ErrorResponse handleGeneralExceptions(Exception exception) {
-        List<String> errors = Collections.singletonList(exception.getMessage());
-        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "", errors);
+        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR,
+                "Error interno do servidor, entre em contato com um administrador do sistema.");
     }
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final ErrorResponse handleRuntimeExceptions(RuntimeException exception) {
-        List<String> errors = Collections.singletonList(exception.getMessage());
-        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "", errors);
+        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR,
+                "Error interno do servidor, entre em contato com um administrador do sistema.");
     }
 }

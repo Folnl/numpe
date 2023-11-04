@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import IFuelingOrder from 'src/app/models/IFuelingOrder';
 import { DeleteFuelingOrderDialogComponent } from 'src/app/pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
+import { FuelingOrderService } from 'src/app/services/fueling-order.service';
 
 function fueling(plate: string): IFuelingOrder {
 	return {
@@ -17,22 +18,39 @@ function fueling(plate: string): IFuelingOrder {
 	templateUrl: './home-page.component.html',
 	styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent {
-	fuelingOrders: IFuelingOrder[] = [
-		fueling('ABC-1234'),
-		fueling('ABC-1234'),
-		fueling('ABC-1234'),
-		fueling('CBA-4321'),
-		fueling('CBA-4321'),
-		fueling('CBA-4321'),
-		fueling('CBA-4321'),
-	];
+export class HomePageComponent implements OnInit {
+	fuelingOrders: IFuelingOrder[] = [];
 
-	constructor(public dialog: MatDialog) {}
+	loadingDialog: Boolean = false;
+	isDialogOpen: Boolean = false;
+
+	constructor(
+		private service: FuelingOrderService,
+		private dialog: MatDialog
+	) {}
+
+	ngOnInit(): void {
+		this.listFuelingOrders();
+	}
+
+	listFuelingOrders() {
+		this.service.list().subscribe({
+			next: (fuelingOrders) => {
+				this.fuelingOrders = fuelingOrders;
+			},
+			error: console.log,
+		});
+	}
 
 	openDeleteFuelingOrderDialog(fuelingOrderToDelete: IFuelingOrder) {
 		this.dialog.open(DeleteFuelingOrderDialogComponent, {
-			data: fuelingOrderToDelete,
+			data: {
+				fuelingOrder: fuelingOrderToDelete,
+				onConfirm: () => {
+					this.listFuelingOrders();
+				},
+			},
+			disableClose: true,
 		});
 	}
 

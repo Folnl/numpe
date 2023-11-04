@@ -1,5 +1,6 @@
 package br.com.numpetest.api.dto;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class FuelingOrderDTO {
 
     @Getter
     @Setter
-    private Float vehicleMileage;
+    private Integer vehicleMileage;
 
     @Getter
     @Setter
@@ -25,7 +26,7 @@ public class FuelingOrderDTO {
 
     @Getter
     @Setter
-    private Float price;
+    private BigDecimal price;
 
     @Getter
     @Setter
