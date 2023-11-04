@@ -13,7 +13,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -31,6 +33,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatButtonModule,
+		MatListModule,
+		MatDividerModule,
+		MatIconModule,
 		FlexLayoutModule,
 	],
 	providers: [],

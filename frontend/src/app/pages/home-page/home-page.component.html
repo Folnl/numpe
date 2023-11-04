@@ -1,4 +1,37 @@
-<p>home-page works!</p>
-<!-- <button mat-raised-button [routerLink]="['register']">
-	Novo abastecimento
-</button> -->
+<div fxLayout="column" class="max-h-[calc(100vh-4rem)] p-2">
+	<div fxFlexAlign="flex-end" class="md:w-[30%] w-[100%]">
+		<button
+			class="w-full"
+			mat-raised-button
+			color="primary"
+			[routerLink]="['register']"
+		>
+			Novo abastecimento
+		</button>
+	</div>
+
+	<mat-list *ngIf="fuelingOrders.length > 0" class="overflow-auto">
+		<div *ngFor="let fuelingOrdersByPlate of vehiclePlates()">
+			<div mat-subheader>{{ fuelingOrdersByPlate[0].vehiclePlate }}</div>
+			<mat-list-item *ngFor="let fuelingOrder of fuelingOrdersByPlate">
+				<div matListItemTitle>
+					KM: {{ fuelingOrder.vehicleMileage }} | Valor: R$
+					{{ fuelingOrder.price }}
+					<button
+						mat-icon-button
+						color="warn"
+						aria-label="Botão de deletar registro"
+					>
+						<mat-icon>delete</mat-icon>
+					</button>
+				</div>
+				<div matListItemLine>
+					Data:
+					{{ fuelingOrder.timestamp | date : "dd/MM/yyyy HH:mm:ss" }}
+				</div>
+			</mat-list-item>
+			<mat-divider></mat-divider>
+		</div>
+	</mat-list>
+	<div *ngIf="fuelingOrders.length == 0">Nenhum abastecimento registrado</div>
+</div>
