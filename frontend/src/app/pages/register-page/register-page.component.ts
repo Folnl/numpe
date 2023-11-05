@@ -1,11 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
-import {
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-register-page',
@@ -21,6 +16,8 @@ export class RegisterPageComponent {
 		},
 	};
 
+	maxDateForTimestamp = new Date();
+
 	constructor(
 		private formBuilder: FormBuilder,
 		private breakpointObserver: BreakpointObserver
@@ -29,7 +26,8 @@ export class RegisterPageComponent {
 			vehiclePlate: ['', Validators.required],
 			vehicleMileage: ['', Validators.required],
 			price: ['', Validators.required],
-			timestamp: ['', Validators.required],
+			date: [this.maxDateForTimestamp, Validators.required],
+			time: ['', Validators.required],
 		});
 	}
 
