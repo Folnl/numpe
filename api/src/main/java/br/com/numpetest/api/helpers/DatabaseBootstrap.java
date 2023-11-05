@@ -34,6 +34,7 @@ public class DatabaseBootstrap {
 
     private Calendar getCalendarPlusDays(Integer days) {
         var calendar = Calendar.getInstance();
+        calendar.set(2021, 10, 1);
         calendar.add(Calendar.DATE, days);
 
         return calendar;

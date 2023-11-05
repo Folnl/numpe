@@ -18,6 +18,7 @@ import br.com.numpetest.api.dto.CreateFuelingOrderDTO;
 import br.com.numpetest.api.dto.FuelingOrderDTO;
 import br.com.numpetest.api.helpers.SuccessResponse;
 import br.com.numpetest.api.services.FuelingOrderService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/fueling_orders")
@@ -35,7 +36,7 @@ public class FuelingOrderController {
     }
 
     @PostMapping
-    public SuccessResponse<FuelingOrderDTO> create(@RequestBody() CreateFuelingOrderDTO createDTO) {
+    public SuccessResponse<FuelingOrderDTO> create(@RequestBody() @Valid CreateFuelingOrderDTO createDTO) {
         var dto = service.create(createDTO);
         return new SuccessResponse<FuelingOrderDTO>(HttpStatus.CREATED, dto);
     }

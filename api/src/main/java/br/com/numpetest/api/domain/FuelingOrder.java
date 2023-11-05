@@ -12,7 +12,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -49,12 +50,13 @@ public class FuelingOrder implements Serializable {
     @Getter
     @Setter
     @NonNull
-    @Positive(message = "O valor do abastecimento deve ser positivo.")
+    @PositiveOrZero(message = "O valor do abastecimento deve ser positivo.")
     private BigDecimal price;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Getter
     @Setter
     @NonNull
+    @PastOrPresent(message = "A data do abastecimento deve ser presente ou retroativa.")
     private Calendar timestamp;
 }

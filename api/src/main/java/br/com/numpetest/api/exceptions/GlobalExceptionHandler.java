@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -28,6 +29,13 @@ public class GlobalExceptionHandler {
             ConstraintViolationException exception) {
         List<String> errors = Collections.singletonList(exception.getMessage());
         return new ErrorResponse(HttpStatus.BAD_REQUEST, errors);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ErrorResponse handleMethodArgumentNotValidException(
+            MethodArgumentNotValidException exception) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST, "Informações incorretas");
     }
 
     @ExceptionHandler(ResponseException.class)
