@@ -83,8 +83,7 @@
 							mat-raised-button
 							color="primary"
 							(submit)="(form)"
-							[disabled]="form.invalid"
-							[disabled]="loading"
+							[disabled]="loading || form.invalid"
 						>
 							Criar
 						</button>
