@@ -35,7 +35,7 @@ import {
 	CurrencyMaskConfig,
 	CurrencyMaskModule,
 } from 'ng2-currency-mask';
-import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
+import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask } from 'ngx-mask';
 import { DeleteFuelingOrderDialogComponent } from './pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
 
 export const customCurrencyMaskConfig: CurrencyMaskConfig = {
@@ -78,6 +78,7 @@ export const customCurrencyMaskConfig: CurrencyMaskConfig = {
 		FlexLayoutModule,
 		HttpClientModule,
 		NgxMaskDirective,
+		NgxMaskPipe,
 		CurrencyMaskModule,
 		LayoutModule,
 	],

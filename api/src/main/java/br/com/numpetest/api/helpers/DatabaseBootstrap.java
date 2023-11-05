@@ -19,12 +19,12 @@ public class DatabaseBootstrap {
 
     public void bootstrapFuelingOrders() {
 
-        var dto1 = new CreateFuelingOrderDTO(200000, "ABC1234", new BigDecimal(49.90), getDatePlusDays(1));
-        var dto2 = new CreateFuelingOrderDTO(200000, "ABC1234", new BigDecimal(49.90), getDatePlusDays(2));
-        var dto3 = new CreateFuelingOrderDTO(200000, "ABC1234", new BigDecimal(49.90), getDatePlusDays(3));
-        var dto4 = new CreateFuelingOrderDTO(200000, "CBA4321", new BigDecimal(49.90), getDatePlusDays(4));
-        var dto5 = new CreateFuelingOrderDTO(200000, "CBA4321", new BigDecimal(49.90), getDatePlusDays(5));
-        var dto6 = new CreateFuelingOrderDTO(200000, "CBA4321", new BigDecimal(49.90), getDatePlusDays(6));
+        var dto1 = new CreateFuelingOrderDTO(200000, "AAA1234", new BigDecimal(49.90), getDatePlusDays(1));
+        var dto2 = new CreateFuelingOrderDTO(200000, "AAA1234", new BigDecimal(49.90), getDatePlusDays(2));
+        var dto3 = new CreateFuelingOrderDTO(200000, "AAA1234", new BigDecimal(49.90), getDatePlusDays(3));
+        var dto4 = new CreateFuelingOrderDTO(200000, "BBB4321", new BigDecimal(49.90), getDatePlusDays(4));
+        var dto5 = new CreateFuelingOrderDTO(200000, "BBB4321", new BigDecimal(49.90), getDatePlusDays(5));
+        var dto6 = new CreateFuelingOrderDTO(200000, "BBB4321", new BigDecimal(49.90), getDatePlusDays(6));
 
         List<CreateFuelingOrderDTO> startingDTOs = List.of(dto1, dto2, dto3, dto4,
                 dto5, dto6);
