@@ -8,13 +8,9 @@ Pré-requisitos
 # Frontend
 
 Dentro da pasta /frontend:
-
-Copy code
 npm install
 
 Para rodar o projeto basta executar o comando:
-
-Copy code
 npm run start
 
 # API
