@@ -9,15 +9,28 @@
 	>
 		<mat-form-field>
 			<mat-label>Placa do veículo</mat-label>
-			<input matInput formControlName="vehiclePlate" />
+			<input
+				matInput
+				formControlName="vehiclePlate"
+				mask="UUU-UUUU"
+				[patterns]="patterns"
+				oninput="this.value = this.value.toUpperCase()"
+				placeholder="___-____"
+			/>
 		</mat-form-field>
 		<mat-form-field>
 			<mat-label>Quilometragem veículo</mat-label>
-			<input matInput formControlName="vehicleMileage" />
+			<input
+				matInput
+				maxlength="14"
+				formControlName="vehicleMileage"
+				mask="separator"
+				thousandSeparator="."
+			/>
 		</mat-form-field>
 		<mat-form-field>
 			<mat-label>Valor do abastecimento</mat-label>
-			<input matInput formControlName="price" />
+			<input matInput formControlName="price" currencyMask />
 		</mat-form-field>
 		<mat-form-field>
 			<mat-label>Choose a date</mat-label>
@@ -25,12 +38,13 @@
 				matInput
 				[matDatepicker]="picker"
 				formControlName="timestamp"
+				readonly
 			/>
 			<mat-datepicker-toggle
 				matIconSuffix
 				[for]="picker"
 			></mat-datepicker-toggle>
-			<mat-datepicker #picker></mat-datepicker>
+			<mat-datepicker [touchUi]="isMobile" #picker></mat-datepicker>
 		</mat-form-field>
 
 		<div

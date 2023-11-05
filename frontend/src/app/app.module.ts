@@ -20,12 +20,29 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import '@angular/common/locales/global/pt';
 import { DeleteFuelingOrderDialogComponent } from './pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
+import {
+	CURRENCY_MASK_CONFIG,
+	CurrencyMaskConfig,
+	CurrencyMaskModule,
+} from 'ng2-currency-mask';
+
+export const customCurrencyMaskConfig: CurrencyMaskConfig = {
+	align: 'left',
+	allowNegative: false,
+	decimal: ',',
+	precision: 2,
+	prefix: 'R$ ',
+	suffix: '',
+	thousands: '.',
+};
 
 @NgModule({
 	declarations: [
@@ -55,10 +72,15 @@ import { HttpClientModule } from '@angular/common/http';
 		MatToolbarModule,
 		FlexLayoutModule,
 		HttpClientModule,
+		NgxMaskDirective,
+		CurrencyMaskModule,
+		LayoutModule,
 	],
 	providers: [
 		{ provide: LOCALE_ID, useValue: 'pt-BR' },
 		{ provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+		{ provide: CURRENCY_MASK_CONFIG, useValue: customCurrencyMaskConfig },
+		provideEnvironmentNgxMask(),
 	],
 	bootstrap: [AppComponent],
 })
