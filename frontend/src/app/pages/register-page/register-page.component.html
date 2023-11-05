@@ -1,0 +1,110 @@
+<div class="w-full" fxLayout="row" fxLayoutAlign="center">
+	<mat-card class="w-full">
+		<mat-card-header class="mb-4">
+			<mat-card-title>Abastecimento</mat-card-title>
+			<mat-card-subtitle>Criar novo abastecimento</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<form
+				[formGroup]="form"
+				(ngSubmit)="onSubmit()"
+				fxLayout="column"
+				fxFlex="100%"
+				fxFlex.gt-sm="75%"
+				fxFlex.gt-md="50%"
+				*ngIf="isFormVisible"
+			>
+				<mat-form-field>
+					<mat-label>Placa do veículo</mat-label>
+					<mat-icon matPrefix>directions_car</mat-icon>
+					<input
+						matInput
+						formControlName="vehiclePlate"
+						mask="UUU-UUUU"
+						[patterns]="patterns"
+						oninput="this.value = this.value.toUpperCase()"
+						placeholder="___-____"
+					/>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Quilometragem veículo</mat-label>
+					<mat-icon matPrefix>speed</mat-icon>
+					<input
+						matInput
+						maxlength="14"
+						formControlName="vehicleMileage"
+						mask="separator"
+						thousandSeparator="."
+					/>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Valor</mat-label>
+					<mat-icon matPrefix>payments</mat-icon>
+					<input matInput formControlName="price" currencyMask />
+				</mat-form-field>
+				<div fxLayout="row" fxLayoutGap="1rem">
+					<mat-form-field fxFlex="100%">
+						<mat-label>Data</mat-label>
+						<mat-icon matPrefix>event</mat-icon>
+						<input
+							matInput
+							[matDatepicker]="picker"
+							formControlName="date"
+							readonly
+							[max]="maxDateForTimestamp"
+							(focus)="picker?.open()"
+						/>
+						<mat-datepicker [touchUi]="isMobile" #picker />
+					</mat-form-field>
+					<mat-form-field>
+						<mat-label>Horário</mat-label>
+						<mat-icon matPrefix>schedule</mat-icon>
+						<input
+							matInput
+							formControlName="time"
+							mask="Hh:m0"
+							placeholder="--:--"
+							[dropSpecialCharacters]="false"
+						/>
+					</mat-form-field>
+				</div>
+
+				<div
+					fxLayoutAlign="flex-end"
+					fxLayoutAlign.xs="flex-start"
+					fxLayout="row"
+					fxLayout.xs="column"
+					fxLayoutGap="1rem"
+				>
+					<div fxFlex.xs="100%" fxFlex.sm="25%">
+						<button
+							class="w-full"
+							mat-raised-button
+							color="primary"
+							(submit)="(form)"
+							[disabled]="loading || form.invalid"
+						>
+							Criar
+						</button>
+					</div>
+					<div fxFlex.xs="100%" fxFlex.sm="25%">
+						<button
+							class="w-full"
+							mat-raised-button
+							color="basic"
+							[routerLink]="['']"
+							[disabled]="loading"
+						>
+							Voltar
+						</button>
+					</div>
+				</div>
+			</form>
+		</mat-card-content>
+		<mat-progress-bar
+			*ngIf="loading"
+			mode="indeterminate"
+			class="mt-2"
+		></mat-progress-bar>
+	</mat-card>
+</div>

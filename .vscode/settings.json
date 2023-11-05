@@ -1,0 +1,5 @@
+{
+  "cSpell.words": ["Datetime", "dtos", "numpetest", "tailwindcss"],
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.compile.nullAnalysis.mode": "automatic"
+}
