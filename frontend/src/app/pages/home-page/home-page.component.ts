@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { IFuelingOrder } from 'src/app/models/IFuelingOrder';
 import { DeleteFuelingOrderDialogComponent } from 'src/app/pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
 import { FuelingOrderService } from 'src/app/services/fueling-order.service';
@@ -17,7 +18,8 @@ export class HomePageComponent implements OnInit {
 
 	constructor(
 		private service: FuelingOrderService,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private snackBar: MatSnackBar
 	) { }
 
 	ngOnInit(): void {
@@ -29,7 +31,9 @@ export class HomePageComponent implements OnInit {
 			next: (fuelingOrders) => {
 				this.fuelingOrders = fuelingOrders;
 			},
-			error: console.log,
+			error: () => {
+				this.snackBar.open("Não foi possível listar os abastecimentos. Tente novamente mais tarde.");
+			}
 		});
 	}
 

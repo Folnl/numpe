@@ -1,5 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { delay } from 'rxjs';
 import { IFuelingOrder } from 'src/app/models/IFuelingOrder';
 import { FuelingOrderService } from 'src/app/services/fueling-order.service';
@@ -19,14 +20,18 @@ export class DeleteFuelingOrderDialogComponent {
 			fuelingOrder: IFuelingOrder;
 			onConfirm?: () => {};
 		},
-		private service: FuelingOrderService
+		private service: FuelingOrderService,
+		private snackBar: MatSnackBar
 	) { }
 
 	deleteFuelingOrderById(id: number) {
-		if (!id) return console.log('ID obrigatório');
+		if (!id) {
+			this.snackBar.open('ID obrigatório');
+			return;
+		}
 
 		this.loading = true;
-		console.log('DELETE');
+
 		this.service
 			.deleteById(id)
 			.pipe(delay(2000))
@@ -36,8 +41,11 @@ export class DeleteFuelingOrderDialogComponent {
 
 					this.loading = false;
 					this.dialogRef.close();
+					this.snackBar.open("Registro deletado com sucesso!");
 				},
-				error: console.log,
+				error: () => {
+					this.snackBar.open("Não foi possível excluir este item. Tente novamente mais tarde.");
+				},
 			});
 	}
 }

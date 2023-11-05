@@ -34,7 +34,9 @@
 									Data:
 									{{
 										fuelingOrder.timestamp
-											| date : "dd/MM/yyyy HH:mm:ss"
+											| date
+												: "dd/MM/yyyy HH:mm"
+												: "+0:00"
 									}}
 								</div>
 							</div>

@@ -27,7 +27,7 @@ export class FuelingOrderService {
 						throw 'Houve um erro ao buscar a lista de abastecimentos. Contate um administrador do sistema.';
 				}),
 				catchError(({ error }) => {
-					throw error.message;
+					throw error;
 				})
 			);
 	}
@@ -44,7 +44,7 @@ export class FuelingOrderService {
 						throw 'Houve um erro ao deletar o registro de abastecimento. Contate um administrador do sistema.';
 				}),
 				catchError(({ error }) => {
-					throw error.message;
+					throw error;
 				})
 			);
 	}
@@ -60,6 +60,9 @@ export class FuelingOrderService {
 					if (response.success) return response.data;
 					else
 						throw 'Houve um erro ao salvar o registro de abastecimento. Contate um administrador do sistema.';
+				}),
+				catchError(({ error }) => {
+					throw error
 				})
 			);
 	}

@@ -19,8 +19,6 @@ export function dateToISOString(date: Date) {
 }
 
 export function getDateFromDateAndTime(date: Date, time: string) {
-	console.log(time);
-
 	const newDate = new Date(date);
 	const splitTime = time.split(':');
 	newDate.setHours(parseInt(splitTime[0]), parseInt(splitTime[1]), 0, 0);

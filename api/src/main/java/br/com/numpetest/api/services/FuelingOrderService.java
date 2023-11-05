@@ -63,7 +63,10 @@ public class FuelingOrderService {
         }
 
         for (FuelingOrder foundDomain : foundDomains) {
-            if (foundDomain.getTimestamp().before(newDomain.getTimestamp())) {
+            if (newDomain.getTimestamp().equals(foundDomain.getTimestamp())) {
+                throw new ResponseException(HttpStatus.BAD_REQUEST,
+                        "Já existe um registro com a data informada.");
+            } else if (foundDomain.getTimestamp().before(newDomain.getTimestamp())) {
                 if (newDomain.getVehicleMileage() >= foundDomain.getVehicleMileage()) {
                     return true;
                 }

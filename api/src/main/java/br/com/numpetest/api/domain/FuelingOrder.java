@@ -2,7 +2,7 @@ package br.com.numpetest.api.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Calendar;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -58,5 +58,5 @@ public class FuelingOrder implements Serializable {
     @Setter
     @NonNull
     @PastOrPresent(message = "A data do abastecimento deve ser presente ou retroativa.")
-    private Calendar timestamp;
+    private Date timestamp;
 }

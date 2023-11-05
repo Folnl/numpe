@@ -6,6 +6,7 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
 	getDateFromDateAndTime,
 	getTimeFromDate
@@ -40,7 +41,8 @@ export class RegisterPageComponent {
 	constructor(
 		private service: FuelingOrderService,
 		private formBuilder: FormBuilder,
-		private breakpointObserver: BreakpointObserver
+		private breakpointObserver: BreakpointObserver,
+		private snackBar: MatSnackBar
 	) {
 		this.form = this.newForm();
 	}
@@ -99,12 +101,16 @@ export class RegisterPageComponent {
 			price: this.form.value.price!,
 			timestamp: this.getTimestampFromForm(this.form)!
 		}).subscribe({
-			next: fuelingOrder => {
-				console.log(fuelingOrder.id)
+			next: () => {
+				this.snackBar.open('Registro salvo com sucesso!')
 				this.loading = false;
 				this.resetForm();
 			},
-			error: console.log
+			error: (error) => {
+				this.snackBar.open(error?.message || "Não foi possível cadastrar este item no momento. Tente novamente mais tarde.");
+				this.loading = false;
+				this.form.enable()
+			}
 		});
 	}
 }

@@ -1,7 +1,7 @@
 package br.com.numpetest.api.dto;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
+import java.util.Date;
 
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -37,5 +37,5 @@ public class FuelingOrderDTO {
     @Getter
     @Setter
     @PastOrPresent(message = "A data do abastecimento deve ser presente ou retroativa.")
-    private Calendar timestamp;
+    private Date timestamp;
 }

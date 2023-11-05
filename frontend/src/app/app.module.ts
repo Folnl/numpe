@@ -8,31 +8,35 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatListModule } from '@angular/material/list';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { LayoutModule } from '@angular/cdk/layout';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import {
+	MAT_SNACK_BAR_DEFAULT_OPTIONS,
+	MatSnackBarConfig,
+	MatSnackBarModule
+} from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http';
+import '@angular/common/locales/global/pt';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import '@angular/common/locales/global/pt';
-import { DeleteFuelingOrderDialogComponent } from './pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
-import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 import {
 	CURRENCY_MASK_CONFIG,
 	CurrencyMaskConfig,
 	CurrencyMaskModule,
 } from 'ng2-currency-mask';
+import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
+import { DeleteFuelingOrderDialogComponent } from './pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
 
 export const customCurrencyMaskConfig: CurrencyMaskConfig = {
 	align: 'left',
@@ -70,6 +74,7 @@ export const customCurrencyMaskConfig: CurrencyMaskConfig = {
 		MatDialogModule,
 		MatProgressBarModule,
 		MatToolbarModule,
+		MatSnackBarModule,
 		FlexLayoutModule,
 		HttpClientModule,
 		NgxMaskDirective,
@@ -80,8 +85,15 @@ export const customCurrencyMaskConfig: CurrencyMaskConfig = {
 		{ provide: LOCALE_ID, useValue: 'pt-BR' },
 		{ provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
 		{ provide: CURRENCY_MASK_CONFIG, useValue: customCurrencyMaskConfig },
+		{
+			provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+				duration: 2500,
+				horizontalPosition: 'right',
+				verticalPosition: 'top'
+			} as MatSnackBarConfig
+		},
 		provideEnvironmentNgxMask(),
 	],
 	bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
