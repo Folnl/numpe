@@ -13,6 +13,7 @@
 				fxFlex="100%"
 				fxFlex.gt-sm="75%"
 				fxFlex.gt-md="50%"
+				*ngIf="isFormVisible"
 			>
 				<mat-form-field>
 					<mat-label>Placa do veículo</mat-label>
@@ -64,6 +65,7 @@
 							formControlName="time"
 							mask="Hh:m0"
 							placeholder="--:--"
+							[dropSpecialCharacters]="false"
 						/>
 					</mat-form-field>
 				</div>
@@ -81,6 +83,8 @@
 							mat-raised-button
 							color="primary"
 							(submit)="(form)"
+							[disabled]="form.invalid"
+							[disabled]="loading"
 						>
 							Criar
 						</button>
@@ -91,6 +95,7 @@
 							mat-raised-button
 							color="basic"
 							[routerLink]="['']"
+							[disabled]="loading"
 						>
 							Voltar
 						</button>
@@ -98,5 +103,9 @@
 				</div>
 			</form>
 		</mat-card-content>
+		<mat-progress-bar
+			*ngIf="loading"
+			mode="indeterminate"
+		></mat-progress-bar>
 	</mat-card>
 </div>

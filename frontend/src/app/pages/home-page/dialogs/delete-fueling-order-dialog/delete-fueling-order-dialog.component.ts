@@ -1,7 +1,7 @@
 import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { delay } from 'rxjs';
-import IFuelingOrder from 'src/app/models/IFuelingOrder';
+import { IFuelingOrder } from 'src/app/models/IFuelingOrder';
 import { FuelingOrderService } from 'src/app/services/fueling-order.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class DeleteFuelingOrderDialogComponent {
 			onConfirm?: () => {};
 		},
 		private service: FuelingOrderService
-	) {}
+	) { }
 
 	deleteFuelingOrderById(id: number) {
 		if (!id) return console.log('ID obrigatório');

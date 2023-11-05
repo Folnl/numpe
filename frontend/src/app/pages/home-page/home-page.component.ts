@@ -1,18 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import IFuelingOrder from 'src/app/models/IFuelingOrder';
+import { IFuelingOrder } from 'src/app/models/IFuelingOrder';
 import { DeleteFuelingOrderDialogComponent } from 'src/app/pages/home-page/dialogs/delete-fueling-order-dialog/delete-fueling-order-dialog.component';
 import { FuelingOrderService } from 'src/app/services/fueling-order.service';
 
-function fueling(plate: string): IFuelingOrder {
-	return {
-		id: 1,
-		vehiclePlate: plate,
-		vehicleMileage: 200000,
-		price: 43.9,
-		timestamp: new Date(),
-	};
-}
 @Component({
 	selector: 'app-home-page',
 	templateUrl: './home-page.component.html',
@@ -27,7 +18,7 @@ export class HomePageComponent implements OnInit {
 	constructor(
 		private service: FuelingOrderService,
 		private dialog: MatDialog
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.listFuelingOrders();

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
-import IFuelingOrder from 'src/app/models/IFuelingOrder';
+import { FuelingOrderMapper, IFuelingOrder } from 'src/app/models/IFuelingOrder';
 
 interface IResponse<T> {
 	status: number;
@@ -13,7 +13,7 @@ interface IResponse<T> {
 	providedIn: 'root',
 })
 export class FuelingOrderService {
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) { }
 
 	list(): Observable<IFuelingOrder[]> {
 		return this.http
@@ -23,7 +23,8 @@ export class FuelingOrderService {
 			.pipe(
 				map((response) => {
 					if (response.success) return response.data;
-					else return response.data;
+					else
+						throw 'Houve um erro ao buscar a lista de abastecimentos. Contate um administrador do sistema.';
 				}),
 				catchError(({ error }) => {
 					throw error.message;
@@ -39,10 +40,26 @@ export class FuelingOrderService {
 			.pipe(
 				map((response) => {
 					if (response.success) return response.data;
-					else return response.data;
+					else
+						throw 'Houve um erro ao deletar o registro de abastecimento. Contate um administrador do sistema.';
 				}),
 				catchError(({ error }) => {
 					throw error.message;
+				})
+			);
+	}
+
+	create(model: IFuelingOrder) {
+		return this.http
+			.post<IResponse<IFuelingOrder>>(
+				'http://localhost:8080/fueling_orders',
+				FuelingOrderMapper.toSave(model)
+			)
+			.pipe(
+				map((response) => {
+					if (response.success) return response.data;
+					else
+						throw 'Houve um erro ao salvar o registro de abastecimento. Contate um administrador do sistema.';
 				})
 			);
 	}
